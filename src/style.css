@@ -1,0 +1,62 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+:root, body {
+  font-family: 'Poppins', sans-serif !important;
+  overflow: hidden !important;
+}
+.font-san{
+  font-family: sans-serif !important;
+}
+.bg_img{
+  background-image: url('../src/assets/login_bg.svg');
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.bg_color{
+  background-image: linear-gradient(135deg, rgba(0,129,184,1) 23%, rgba(0,129,184,1) 35%, rgba(255,255,255,1) 100%);
+}
+.com_btn{
+  @apply border-[#1D4481] border text-[#1D4481] rounded-[10px]
+}
+
+
+.postiveColor{
+  color: #0CBA90 !important;
+}
+.negativeColor{
+  color: #EE3D3D !important;
+}
+.main_height{
+  height: calc(100vh - 68px) !important;
+}
+.watchScripContent{
+  height:calc(100vh - 162px) !important;
+  overflow-y: auto !important;
+}
+.index_wid_hyt{
+  width: calc(100% - 64px) !important;
+}
+
+
+@media only screen and (min-width: 1600px) {
+  .left_width{
+    min-width: 460px;
+    width: 460px !important;
+  }
+}
+@media only screen and (max-width: 1599px){
+  .left_width{
+    min-width: 400px;
+    width: 400px !important;
+  }
+}
+@media only screen and (max-width: 650px){
+  .left_width{
+    min-width: auto;
+    width: auto !important;
+  }
+}
+
+.disabledCss {
+  background-image: url('./assets/strip.svg');
+  color: #a8a8a8 !important;
+}
