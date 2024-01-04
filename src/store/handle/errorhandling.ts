@@ -1,3 +1,4 @@
+import { store } from '..';
 import notification from '../../notification'
 import router from  '../../router';
 const state = {
@@ -53,8 +54,9 @@ const actions = {
     },
 
     resetLocal({}: any){
-        localStorage.clear()
-        router.push({path: '/', query: { isLogout: 'true'}} ) 
+        router.push({path: '/', query: { isLogout: 'true'}} )
+        store.state.localItems.forEach((element: any) => {
+            !!localStorage.getItem(element) ? localStorage.removeItem(element) : "";})
     },
     checkRouter({ dispatch} : any, payload: any){
        dispatch('errorLog', payload)

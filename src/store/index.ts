@@ -13,7 +13,14 @@ export const store = createStore({
   state: {
     query: '',
     isCalled: false,
-    buildDate:'22_07_2023_20_25'
+    buildDate:'22_07_2023_20_25',
+    openMenu: false,
+    logoutCondition: false,
+
+    localItems: [
+      "developerUserId",
+      "developerAccessToken"
+    ],
   },
   mutations: {
     setQuery(state: any, payload: any){
@@ -21,7 +28,13 @@ export const store = createStore({
     },
     setIsCalled(state: any, payload: any){
       state.isCalled = payload
-    }
+    },
+    setOpenMenu(state: any, payload: any){
+      state.openMenu = payload
+    },
+    setLogoutCondition(state: any, payload: any) {
+      state.logoutCondition = payload;
+    },
   },
   actions: {},
   getters: {

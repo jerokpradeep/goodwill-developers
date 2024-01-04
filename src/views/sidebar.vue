@@ -1,26 +1,86 @@
 <template>
- <nav aria-label="Progress" class="py-6">
-                        <ol role="list" class="flex items-center cursor-pointer" @click="$router.push('/home'); $emit('isClose', false)">
-                            <svg fill="none" stroke="currentColor" stroke-width="1.5" class="w-10 h-10 cursor-pointer" viewBox="0 0 24 24"
-                                xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m6.75 12l-3-3m0 0l-3 3m3-3v6m-1.5-15H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z">
-                                </path>
-                            </svg><span>My Apps</span>
-                        </ol>
-                    </nav>
-</template>
 
-<script lang="ts">
-import { defineComponent,PropType } from 'vue';
-
-export default defineComponent({
-    name: 'sidebar',
-    props:{
-        isOpen: {
-            type: Boolean as PropType<any>,
-            default: false
-        }
+    <div>
+      <div >
+              <ul role="list" class="space-y-2 ">
+                <li   class="md:flex-1 py-2  hover:bg-[#f9fdff] border-l-4" v-for="(step, index) in steps" :key="index" 
+                @click="activeTab(step)" :class="{ ' border-[#0081B8] bg-[#f9fdff]': step.route == $route.path , 'border-none' : !step.route == $route.path}"
+    >
+                  <div class="cursor-pointer">
+                      <div @mouseover="hoverIdx = index" @mouseleave="hoverIdx = -1" class="flex flex-col items-center justify-center cursor-pointer min-h-[32px] hover:filter-[]" :class="{ 'text-[#0081B8]': (step.route == $route.path && hoverIdx != index), primaryColor: !step.route == $route.path ,  'active-filter' : hoverIdx == index}">
+  
+                        <span
+                          ><img
+                            :class="{ activeImg: (step.route == $route.path && hoverIdx != index) }"
+                            class="max-w-[76%] h-auto mx-auto"
+                            :src="getImageSrc(step)"
+                            :alt="step.svg"
+                        /></span>
+                        <span
+                          class="font-medium text-xs text-center"
+                          :class="{
+                            'text-[#0081B8]': step.route == $route.path,
+                            primaryColor: !step.route == $route.path,
+                          }"
+                          >{{ step.name }}</span
+                        >
+                      </div>
+                    </div>
+                </li>
+              </ul>
+            </div>
+    </div>
+  </template>
+  
+  <script>
+  import router from "../router"
+  export default {
+    components: {   router },
+    data(){
+      return{ 
+        steps: [
+        {
+            name: "My Apps",
+            route: "/home",
+            status: "active",
+            active: false,
+            svg: "home",
+          },
+        ],
+        hoverIdx: -1
+      }
+    },
+    methods: {
+      activeTab(val) {
+        router.push(val.route);
+        this.setActiveTab(val);
+  
+      },
+      setActiveTab(val) {
+        this.steps.forEach((el) => {
+          if (el.name == val.name) {
+            el.active = true;
+          } else {
+            el.active = false;
+          }
+        });
+      },
+      getImageSrc(step) {
+        const imgUrl = new URL(`../assets/menu/${step.svg}.svg`, import.meta.url)
+          .href;
+        return imgUrl;
+      },
+   
+    },
+  
+    mounted(){
+      let index =  this.steps.findIndex((el)=>{
+        el.route == this.$route.path
+      })
+    
+      if(index > -1){
+        this.setActiveTab(this.steps[index])
+      }
     }
-})
-</script>
+  };
+  </script>

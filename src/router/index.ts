@@ -55,13 +55,13 @@ router.beforeEach(async (to, from, next) => {
 });
 
 function validSession() {
-  let userId = JSON.parse(localStorage.getItem('userId')!);
-  let accessToken = JSON.parse(localStorage.getItem('accessToken')!);
+  let userId = JSON.parse(localStorage.getItem("developerUserId")!);
+  let accessToken = JSON.parse(localStorage.getItem("developerAccessToken")!);
   if (userId) {
-    store.commit('auth/setUserId', userId);
+    store.commit("auth/setUserId", userId);
   }
   if (accessToken) {
-    store.commit('auth/setAuthToken', accessToken);
+    store.commit("auth/setAuthToken", accessToken);
   }
   let valid: any;
   userId && accessToken ? (valid = true) : (valid = false);

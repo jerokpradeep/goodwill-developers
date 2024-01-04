@@ -7,15 +7,15 @@ const state = {
 };
 
 const mutations = {
-  setAuthToken(state: any, payload: any) {
-    state.accessToken = payload;
-    localStorage.setItem('accessToken', JSON.stringify(payload));
-  },
-  setUserId(state: any, payload: any) {
-    state.userId = payload;
-    localStorage.setItem('userId', JSON.stringify(payload));
-  },
-};
+    setAuthToken(state: any, payload: any){
+        state.accessToken = payload
+        localStorage.setItem('developerAccessToken', JSON.stringify(payload))
+    },
+    setUserId(state: any, payload: any){
+        state.userId = payload
+        localStorage.setItem('developerUserId', JSON.stringify(payload))
+    }
+}
 
 const actions = {
   getAuthSession({ commit, dispatch, rootGetters }: any) {
@@ -59,7 +59,11 @@ const actions = {
   },
 };
 
-const getters = {};
+const getters = {
+
+  getUserId: (state: any) => state.userId
+
+};
 
 const auth = {
   namespaced: true,

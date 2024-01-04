@@ -5,7 +5,7 @@
         </div>
         <div>
             <button
-                class="flex justify-start ml-3 py-1 rounded px-3 mt-3  bg-blue-500 text-white  cursor-pointer rounded mb-2 focus:outline-none">Applications</button>
+                class="flex justify-start ml-3 py-1 rounded px-3 mt-3  bg-blue-500 text-white  cursor-pointer  mb-2 focus:outline-none">Applications</button>
         </div>
         <div class="border border-gray-300 mr-3 ml-3"></div>
         <div class="mt-8 flex flex-wrap">
@@ -40,7 +40,7 @@
                     </tbody>
                 </table>
                 </div>
-                <div v-else>No Apps Found</div>
+                <div v-else class="p-4 h-full flex items-center justify-center relative font-bold">No Apps Found</div>
             </div>
 
         </div>

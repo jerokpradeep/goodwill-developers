@@ -7,8 +7,11 @@ import {store} from './store'
 import { default as notification } from "./notification/index.ts";
 import VueClickAway from "vue3-click-away";
 import VueTippy from 'vue-tippy';
-import VueCryptojs from 'vue-cryptojs'
+import VueCryptojs from 'vue-cryptojs';
+import directive from './directives/outsideClick.ts';
+
 import 'tippy.js/dist/tippy.css' // optional for styling
+
 const app = createApp(App).use(store).use(router).use(VueClickAway).use(VueCryptojs).use(
     VueTippy,
     // optional
@@ -30,6 +33,8 @@ const app = createApp(App).use(store).use(router).use(VueClickAway).use(VueCrypt
     }
   )
   app.config.globalProperties.$notification = notification
+
+  app.directive('click-outside', directive);
 
 
 app.mount('#app')
